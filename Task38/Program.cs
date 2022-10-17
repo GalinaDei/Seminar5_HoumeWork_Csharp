@@ -8,7 +8,7 @@ double[] CreateArray (int num)
     Random rnd = new Random();
     for (int i = 0; i < array.Length; i++)
     {
-        array[i]=rnd.NextDouble(-99.1,99.9);
+        array[i]=rnd.Next(1,99)+rnd.NextDouble();
     }
     return (array);
 }
@@ -22,20 +22,22 @@ void PrintArray (double[]array)
        else {Console.Write($"{array[i]}] -> ");}
     }
 }
-void ElementSummCount (double[] array)
-{
-    double min = 0;
-    double max =0;
-    for (int i = 0; i < array.Length; i++)
+(double, double) FindMaxMin(double[] array)
     {
-        if(array[i]%2!=0)
-        {count= count + array[i];}
-        else{}
-        
-    }    
-    Console.WriteLine($"{count}");
-}
+        double max = array[0];
+        double min = array[0];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if(array[i]>max) max=array[i];
+            if(array[i]<min) min = array[i]; 
+        }
+        return (max,min);
+    }
 
-int[]resultArray= CreateArray (3);
+double[]resultArray= CreateArray (5);
 PrintArray(resultArray);
-ElementSummCount(resultArray);
+(double max, double min) = FindMaxMin(resultArray);
+double difference = max - min;
+Console.WriteLine(difference);
+
+
